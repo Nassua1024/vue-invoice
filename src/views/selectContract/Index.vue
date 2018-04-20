@@ -1,12 +1,17 @@
 
 <template>
     <div class="select-wrap">
-        <ul>
-            <li>[合同1]的总课时：80课时</li>
-            <li><label>报名上课的分馆</label><span>世界大道分馆</span></li>
-            <li><label>合同的报名时间</label><span>2016/08/24</span></li>
-            <li><label>总学费</label><span>18600元</span></li>
-            <li><label>实际学费</label><span>14000元</span></li>
+        <ul 
+            v-for='item in contractList' 
+            :key='item.contractId'
+            @click='redirctTo'
+            :class='{ active: isSelect }'
+        > 
+            <li>[合同1]的总课时：{{ item.lessonCnt }}课时</li>
+            <li><label>报名上课的分馆</label><span>{{ item.storeName }}</span></li>
+            <li><label>合同的报名时间</label><span>{{ new Date(item.contractDate).Format('yyyy-MM-dd') }}</span></li>
+            <li><label>总学费</label><span>{{ item.totalTuition }}</span></li>
+            <li><label>实际学费</label><span>{{ item.actualAmt }}</span></li>
         </ul>
     </div>
 </template>
@@ -20,6 +25,7 @@
             position: relative;
             box-sizing: border-box;
             padding: 0 30px;
+            margin-bottom: 30px;
             border: 1px solid #DDD;
             &:after {
                 position: absolute;
@@ -32,6 +38,10 @@
                 background-size: cover;
                 z-index: 9;
                 content: '';
+            }
+            &.active:after {
+                background: url('../../assets/icon_xuanzhong.png') no-repeat center center;
+                background-size: cover;
             }
         }
         li {
@@ -61,13 +71,31 @@
     import { URL } from '@/api/index';
     
     export default {
+        data() {
+            return {
+                contractList: [],
+                isSelect: true
+            };
+        },
         created() {
-                        
+
+            // 合同列表
             const params = { invoiceType: 'SPECIAL' };
+            const { $get } = this;
             
-            this.$get(URL.contract_list, params).then(res => {
-                console.log(res);
+            $get(URL.contract_list, params).then(res => {
+                if(res && res.code == 0) {
+                    this.contractList = res.data.list.map(item => {
+                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId } = item;
+                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId };
+                    });
+                }
             });
+        },
+        methods: {
+            redirctTo() {
+                this.$router.push('/');
+            }
         }
     };
 </script>
