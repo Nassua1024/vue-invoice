@@ -6,12 +6,17 @@ import router from './router';
 import 'lib-flexible/flexible';
 import { get } from '@/utils/http';
 
-import { Switch } from 'element-ui';
+import { Switch, Button, Message, Row, Col, Input } from 'element-ui';
 
 Vue.use(Switch);
+Vue.use(Button);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Input);
 
 Vue.config.productionTip = false;
 Vue.prototype.$get = get;
+Vue.prototype.$message = Message;
 
 /* eslint-disable no-new */
 new Vue({

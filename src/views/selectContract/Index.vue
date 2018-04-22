@@ -4,8 +4,8 @@
         <ul 
             v-for='item in contractList' 
             :key='item.contractId'
-            @click='redirctTo'
-            :class='{ active: isSelect }'
+            :class='{ active: item.isSelect }'
+            @click='handleSelect(item.contractId)'
         > 
             <li>[合同1]的总课时：{{ item.lessonCnt }}课时</li>
             <li><label>报名上课的分馆</label><span>{{ item.storeName }}</span></li>
@@ -13,10 +13,65 @@
             <li><label>总学费</label><span>{{ item.totalTuition }}</span></li>
             <li><label>实际学费</label><span>{{ item.actualAmt }}</span></li>
         </ul>
+        <div class='commit'><el-button @click='redirctTo'>下一步</el-button></div>
     </div>
 </template>
 
-<style lang="less">
+<script>
+
+    import { URL } from '@/api/index';
+    
+    export default {
+        data() {
+            return {
+                contractList: [],
+                selectId: null
+            };
+        },
+        created() {
+
+            // 合同列表
+            const params = { invoiceType: 'SPECIAL' };
+
+            this.$get(URL.contract_list, params).then(res => {
+                if(res && res.code == 0) {
+                    this.contractList = res.data.list.map(item => {
+                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId } = item;
+                        const isSelect = false;
+                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, isSelect };
+                    })
+                }
+            });
+        },
+        methods: {
+            handleSelect(id) {
+                this.contractList.forEach(item => {
+                    item.isSelect = id == item.contractId ? true : false;
+                    this.selectId = id;
+                    return; 
+                })
+            },
+
+            redirctTo() {
+                
+                const { selectId } = this;
+
+                if(selectId == null) {
+                    this.$message({
+                        message: '请选择合同',
+                        type: 'warning',
+                        duration: 1000
+                    });
+                    return;
+                }
+                
+                this.$router.push({path: '/plainInvoice', query: { id: selectId } });
+            }
+        }
+    };
+</script>
+
+<style lang="less" scoped>
     .select-wrap {
         width: 100%;
         box-sizing: border-box;
@@ -34,15 +89,18 @@
                 display: block;
                 width: 63px;
                 height: 63px;
-                background: url('../../assets/icon_weixuanzhong.png') no-repeat center center;
+                background: url(../../assets/icon_weixuanzhong.png) no-repeat center center;
                 background-size: cover;
                 z-index: 9;
                 content: '';
             }
             &.active:after {
-                background: url('../../assets/icon_xuanzhong.png') no-repeat center center;
+                background: url(../../assets/icon_xuanzhong.png) no-repeat center center;
                 background-size: cover;
             }
+        }
+        ul.active {
+            border-color: #4e5d8c;
         }
         li {
             padding: 0 10px;
@@ -65,37 +123,3 @@
         }
     }
 </style>
-
-<script>
-    
-    import { URL } from '@/api/index';
-    
-    export default {
-        data() {
-            return {
-                contractList: [],
-                isSelect: true
-            };
-        },
-        created() {
-
-            // 合同列表
-            const params = { invoiceType: 'SPECIAL' };
-            const { $get } = this;
-            
-            $get(URL.contract_list, params).then(res => {
-                if(res && res.code == 0) {
-                    this.contractList = res.data.list.map(item => {
-                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId } = item;
-                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId };
-                    });
-                }
-            });
-        },
-        methods: {
-            redirctTo() {
-                this.$router.push('/');
-            }
-        }
-    };
-</script>
