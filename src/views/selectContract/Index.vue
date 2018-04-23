@@ -5,7 +5,7 @@
             v-for='item in contractList' 
             :key='item.contractId'
             :class='{ active: item.isSelect }'
-            @click='handleSelect(item.contractId)'
+            @click='handleSelect(item.contractId, item.lessPrice)'
         > 
             <li>[合同1]的总课时：{{ item.lessonCnt }}课时</li>
             <li><label>报名上课的分馆</label><span>{{ item.storeName }}</span></li>
@@ -25,7 +25,8 @@
         data() {
             return {
                 contractList: [],
-                selectId: null
+                selectId: null,
+                selectNum: 0
             };
         },
         created() {
@@ -36,25 +37,26 @@
             this.$get(URL.contract_list, params).then(res => {
                 if(res && res.code == 0) {
                     this.contractList = res.data.list.map(item => {
-                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId } = item;
+                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice } = item;
                         const isSelect = false;
-                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, isSelect };
+                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, isSelect };
                     })
                 }
             });
         },
         methods: {
-            handleSelect(id) {
+            handleSelect(id, price) {
                 this.contractList.forEach(item => {
                     item.isSelect = id == item.contractId ? true : false;
                     this.selectId = id;
-                    return; 
+                    this.selectNum = price;
+                    return;
                 })
             },
 
             redirctTo() {
                 
-                const { selectId } = this;
+                const { selectId, selectNum } = this;
 
                 if(selectId == null) {
                     this.$message({
@@ -65,7 +67,7 @@
                     return;
                 }
                 
-                this.$router.push({path: '/plainInvoice', query: { id: selectId } });
+                this.$router.push({path: '/plainInvoice', query: { id: selectId, num: selectNum } });
             }
         }
     };

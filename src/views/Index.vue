@@ -20,19 +20,19 @@
         }
         a:nth-child(1) {
             background: url(../assets/ordinary.png) no-repeat center center;
-            background-size: cover;
+            background-size: 100% 100%;
         }
         a:nth-child(2) {
             background: url(../assets/special.png) no-repeat center center;
-            background-size: cover;
+            background-size: 100% 100%;
         }
         a:nth-child(3) {
             background: url(../assets/change.png) no-repeat center center;
-            background-size: cover;
+            background-size: 100% 100%;
         }
         a:nth-child(4) {
             background: url(../assets/my.png) no-repeat center center;
-            background-size: cover;
+            background-size: 100% 100%;
         }
     }
 </style>
