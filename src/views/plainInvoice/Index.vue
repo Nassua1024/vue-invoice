@@ -3,12 +3,12 @@
         <p>经系统检测最近180天新签合同如，请确认并选择需要开发票的合同</p>
         <div class="content">
             <el-row>
-                <el-col :span="12">发票内容</el-col>
-                <el-col :span="12">培训费</el-col>
+                <el-col :span="10">发票内容</el-col>
+                <el-col :span="14">培训费</el-col>
             </el-row>
             <el-row>
-                <el-col :span="12">发票类型</el-col>
-                <el-col :span="12">
+                <el-col :span="10">发票类型</el-col>
+                <el-col :span="14">
                     <el-switch
                         v-model="checked"
                         :width=40
@@ -18,8 +18,8 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="12">发票抬头</el-col>
-                <el-col :span="12">
+                <el-col :span="10">发票抬头</el-col>
+                <el-col :span="14">
                     <el-input
                         placeholder="请填写发票抬头"
                         clearable
@@ -27,25 +27,29 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="12">发票金额</el-col>
-                <el-col :span="6">2500元</el-col>
-                <el-col :span="6">
-                   <el-button type="primary">申请多张</el-button>
+                <el-col :span="10">发票金额</el-col>
+                <el-col :span="8">{{ ticketTotal }}元</el-col>
+                <el-col :span="6" class="btn"> 
+                   <el-button type="primary" @click="ticketNum ++">申请多张</el-button>
                 </el-col>
             </el-row>
-            <el-row>
-                <el-col :span="12">开票金额</el-col>
-                <el-col :span="12">
+            <el-row v-for="item in ticketNum" :key="item">
+                <el-col :span="10">开票金额</el-col>
+                <el-col :span="10" class="iput">
                     <el-input
                         placeholder="请输入大于1500元金额"
                         clearable
+                        @change="(v) => aaaa(v, item)"
                     />
+                </el-col>
+                <el-col :span="4" class="btn">
+                    <el-button type="primary">删除</el-button>
                 </el-col>
             </el-row>
             <div class="title">发票收件信息</div>
             <el-row>
-                <el-col :span="12">收件人姓名</el-col>
-                <el-col :span="12">
+                <el-col :span="10">收件人姓名</el-col>
+                <el-col :span="14">
                     <el-input
                         placeholder="请输入收件人姓名"
                         clearable
@@ -72,11 +76,8 @@
             </el-row>
             <el-row>
                 <el-col :span="12">详细地址</el-col>
-                <el-col :span="12">
-                    <el-input
-                        placeholder="请输入详细地址"
-                        clearable
-                    />
+                <el-col :span="12" class="area">
+                    <v-distpicker province="广东省" city="广州市" area="海珠区"></v-distpicker>
                 </el-col>
             </el-row>
         </div>
@@ -85,12 +86,24 @@
 </template>
 
 <script>
+    
+    import VDistpicker from 'v-distpicker';
+    
     export default {
         data() {
             return {
-                checked: false
+                checked: false,
+                ticketTotal: this.$route.query.num,
+                ticketNum: 1,
+                ticketList: []
             }
-        }
+        },
+        methods: {
+            aaaa(v, i) {
+                this.ticketList[i] = v;
+            }
+        },
+        components: { VDistpicker }
     }
 </script>
 
@@ -121,7 +134,11 @@
                 color: #333;
                 .el-col:first-child {
                     text-indent: 50px;
-                } 
+                }
+                .btn {
+                    padding-right: 30px;
+                    text-align: right;
+                }
             }
             .el-switch {
                 height: 30px;
@@ -151,7 +168,7 @@
                 vertical-align: top;
                 input {
                     box-sizing: border-box;
-                    padding: 0 100px 0 0;
+                    padding: 0;
                     border: none;
                     font-size: 24px;
                 }
