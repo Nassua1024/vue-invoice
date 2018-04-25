@@ -31,7 +31,7 @@
         created() {
 
             // 合同列表
-            const params = { invoiceType: 'SPECIAL' };
+            const params = { invoiceType: 'NORMAL' };
 
             this.$get(URL.contract_list, params).then(res => {
                 if(res && res.code == 0) {
