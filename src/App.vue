@@ -30,28 +30,79 @@
 	}
 	a {
 		text-decoration: none;
-		-webkit-tap-highlight-color:rgba(0,0,0,0);
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	}
 	.el-message {
 		top: 36%;
 		min-width: 3.0rem;
 	}
 	.commit {
-		position: absolute;
+		position: fixed;
 		left: 0;
 		bottom: 0;
 		width: 100%;
 		height: 140px;
-		background: #fff;
+		background: #f5f5f5;
 		box-sizing: border-box;
 		padding: 30px 50px;
-		button{
+		z-index: 99;
+		button {
 			width: 100%;
 			height: 100%;
 			background: #4e5d8c;
 			font-size: 28px;
 			color: #fff;
 			letter-spacing: 2px;
+		}
+	}
+	.pick-mark {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		background: rgba(0, 0, 0, .4);
+		z-index: 999;
+		.btn-box {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 180px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 40px;
+			padding: 0 20px;
+			font-size: 14px;
+			background: #fff;
+			.btn-cancel {
+				color: #55f;
+			}
+			.btn-sure {
+				color: #e5004d;
+			}
+		}
+		.select {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+		}
+		.picker-items {
+			background: #eee;
+			.picker-slot {
+				font-size: 14px;
+			}
+			.picker-item {
+				&.picker-selected {
+					color: #535353;
+				}
+			}
+			.picker-center-highlight {
+				&:after, &:before {
+					background: #fff;
+				}
+			}
 		}
 	}
 </style>

@@ -4,7 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import 'lib-flexible/flexible';
-import { get } from '@/utils/http';
+import { ajax } from '@/utils/http';
 
 import { Switch, Button, Message, Row, Col, Input } from 'element-ui';
 
@@ -15,7 +15,7 @@ Vue.use(Col);
 Vue.use(Input);
 
 Vue.config.productionTip = false;
-Vue.prototype.$get = get;
+Vue.prototype.$axios = ajax;
 Vue.prototype.$message = Message;
 
 /* eslint-disable no-new */

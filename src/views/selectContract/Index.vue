@@ -1,6 +1,6 @@
 
 <template>
-    <div class="select-wrap">
+    <div class="contract-list">
         <ul 
             v-for='item in contractList' 
             :key='item.contractId'
@@ -32,9 +32,9 @@
         created() {
 
             // 合同列表
-            const params = { invoiceType: 'NORMAL' };
+            const params = { data: { invoiceType: 'NORMAL' } };
 
-            this.$get(URL.contract_list, params).then(res => {
+            this.$axios(URL.contract_list, params).then(res => {
                 if(res && res.code == 0) {
                     this.contractList = res.data.list.map(item => {
                         const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice } = item;
@@ -45,6 +45,10 @@
             });
         },
         methods: {
+<<<<<<< Updated upstream
+=======
+            // 选中合同
+>>>>>>> Stashed changes
             handleSelect(id, price) {
                 this.contractList.forEach(item => {
                     item.isSelect = id == item.contractId ? true : false;
@@ -54,6 +58,7 @@
                 })
             },
 
+            // 确定
             redirctTo() {
                 
                 const { selectId, selectNum } = this;
@@ -62,7 +67,7 @@
                     this.$message({
                         message: '请选择合同',
                         type: 'warning',
-                        duration: 1000
+                        duration: 1500
                     });
                     return;
                 }
@@ -74,15 +79,18 @@
 </script>
 
 <style lang="less" scoped>
-    .select-wrap {
+    .contract-list {
         width: 100%;
+        min-height: 100%;
         box-sizing: border-box;
         padding: 30px;
+        background: #f5f5f5;
         ul {
             position: relative;
             box-sizing: border-box;
-            padding: 0 30px;
             margin-bottom: 30px;
+            padding: 0 30px;
+            background: #fff;
             border: 1px solid #DDD;
             &:after {
                 position: absolute;

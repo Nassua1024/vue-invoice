@@ -17,6 +17,10 @@
     "axios": "^0.18.0",
     "element-ui": "^2.3.4",
     "lib-flexible": "^0.3.2",
+<<<<<<< Updated upstream
+=======
+    "mint-ui": "^2.2.13",
+>>>>>>> Stashed changes
     "v-distpicker": "^1.0.16",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
