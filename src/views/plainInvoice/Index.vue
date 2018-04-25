@@ -26,7 +26,6 @@
                     />
                 </el-col>
             </el-row>
-<<<<<<< Updated upstream
             <el-row>
                 <el-col :span="10">发票金额</el-col>
                 <el-col :span="8">{{ ticketTotal }}元</el-col>
@@ -36,12 +35,11 @@
             </el-row>
             <el-row v-for="item in ticketNum" :key="item">
                 <el-col :span="10">开票金额</el-col>
-                <el-col :span="10" class="iput">
-=======
+                <el-col :span="10" class="iput"></el-col>
+            </el-row>
             <el-row v-if="checked">
                 <el-col :span="10">纳税人识别号</el-col>
                 <el-col :span="14">
->>>>>>> Stashed changes
                     <el-input
                         placeholder="请填写纳税人识别号"
                         clearable
@@ -53,19 +51,17 @@
                 </el-col>
             </el-row>
             <el-row>
-<<<<<<< Updated upstream
                 <el-col :span="10">收件人姓名</el-col>
                 <el-col :span="14">
                     <el-input
                         placeholder="请输入收件人姓名"
                         clearable
                     />
-=======
+                </el-col>
                 <el-col :span="10">发票金额</el-col>
                 <el-col :span="8">{{ ticketTotal }}元</el-col>
                 <el-col :span="6" class="btn"> 
                    <el-button type="primary" @click="ticketList.push(0)">申请多张</el-button>
->>>>>>> Stashed changes
                 </el-col>
             </el-row>
             <el-row v-for="(item, index) in ticketList" :key="index">
@@ -83,12 +79,6 @@
                     <el-button type="primary" @click="ticketList.splice(index, 1)">删除</el-button>
                 </el-col>
             </el-row>
-<<<<<<< Updated upstream
-            <el-row>
-                <el-col :span="12">详细地址</el-col>
-                <el-col :span="12" class="area">
-                    <v-distpicker province="广东省" city="广州市" area="海珠区"></v-distpicker>
-=======
             <div class="title">发票收件信息</div>
             <el-row v-for="item in invoiceDetail" :key="item.label">
                 <el-col :span="10">{{ item.label }}</el-col>
@@ -97,7 +87,6 @@
                         :placeholder="'请输入' + item.label"
                         clearable
                     />
->>>>>>> Stashed changes
                 </el-col>
             </el-row>
         </div>
@@ -106,18 +95,9 @@
 </template>
 
 <script>
-    
-    import VDistpicker from 'v-distpicker';
-    
     export default {
         data() {
             return {
-<<<<<<< Updated upstream
-                checked: false,
-                ticketTotal: this.$route.query.num,
-                ticketNum: 1,
-                ticketList: []
-=======
                 checked: false, // 是否选中企业
                 ticketTotal: this.$route.query.num, // 可开金额
                 ticketList: [0], // 开票金额
@@ -156,8 +136,6 @@
                         applyPriceList: datalist
                     }
                 }; */
-                
->>>>>>> Stashed changes
             }
         },
         methods: {
@@ -165,7 +143,6 @@
                 this.ticketList[i] = v;
             }
         },
-        components: { VDistpicker }
     }
 </script>
 

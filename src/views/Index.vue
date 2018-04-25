@@ -20,26 +20,7 @@
         }
         a:nth-child(1) {
             background: url(../assets/ordinary.png) no-repeat center center;
-<<<<<<< Updated upstream
-<<<<<<< HEAD
             background-size: 100%;
-=======
-            background-size: 100% 100%;
->>>>>>> Stashed changes
-        }
-        a:nth-child(2) {
-            background: url(../assets/special.png) no-repeat center center;
-            background-size: 100% 100%;
-        }
-        a:nth-child(3) {
-            background: url(../assets/change.png) no-repeat center center;
-            background-size: 100% 100%;
-        }
-        a:nth-child(4) {
-            background: url(../assets/my.png) no-repeat center center;
-<<<<<<< Updated upstream
-            background-size: 100%;
-=======
             background-size: 100% 100%;
         }
         a:nth-child(2) {
@@ -52,11 +33,21 @@
         }
         a:nth-child(4) {
             background: url(../assets/my.png) no-repeat center center;
+            background-size: 100%;
             background-size: 100% 100%;
->>>>>>> d861d062dc6b953f736a3bc49c0dc1e5797bfd74
-=======
+        }
+        a:nth-child(2) {
+            background: url(../assets/special.png) no-repeat center center;
             background-size: 100% 100%;
->>>>>>> Stashed changes
+        }
+        a:nth-child(3) {
+            background: url(../assets/change.png) no-repeat center center;
+            background-size: 100% 100%;
+        }
+        a:nth-child(4) {
+            background: url(../assets/my.png) no-repeat center center;
+            background-size: 100% 100%;
+            background-size: 100% 100%;
         }
     }
 </style>

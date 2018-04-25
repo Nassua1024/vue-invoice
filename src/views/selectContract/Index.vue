@@ -32,7 +32,7 @@
         created() {
 
             // 合同列表
-            const params = { data: { invoiceType: 'NORMAL' } };
+            const params = { invoiceType: 'NORMAL' };
 
             this.$axios(URL.contract_list, params).then(res => {
                 if(res && res.code == 0) {
@@ -45,10 +45,6 @@
             });
         },
         methods: {
-<<<<<<< Updated upstream
-=======
-            // 选中合同
->>>>>>> Stashed changes
             handleSelect(id, price) {
                 this.contractList.forEach(item => {
                     item.isSelect = id == item.contractId ? true : false;
