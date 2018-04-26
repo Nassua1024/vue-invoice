@@ -1,6 +1,9 @@
 
 <template>
-    <div class="contract-list">
+    <div class="contract-list" 
+        v-loading.fullscreen.lock="loading"
+        element-loading-text="数据加载中..."
+    >
         <ul 
             v-for='item in contractList' 
             :key='item.contractId'
@@ -24,6 +27,7 @@
     export default {
         data() {
             return {
+                loading: true,
                 contractList: [], // 合同列表
                 isGw: false, // 是否属于国文
                 selectId: null, // 是否选中合同
@@ -42,6 +46,7 @@
                         const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, company } = item;
                         let isGw = company == '国文' ? true : false;
                         const isSelect = false;
+                        this.loading = false;
                         return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, isSelect, isGw };
                     })
                 }
