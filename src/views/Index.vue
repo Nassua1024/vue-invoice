@@ -1,7 +1,7 @@
 <template>
     <div class="btn-wrap">
-        <a @click="redirctTo('NORMAL')"></a>
-        <router-link to="/"></router-link>
+        <a href="javascript: " @click="redirctTo('NORMAL')"></a>
+        <a href="javascript: " @click="redirctTo('SPECIAL')"></a>
         <router-link to="/"></router-link>
         <router-link to="/"></router-link>
     </div>

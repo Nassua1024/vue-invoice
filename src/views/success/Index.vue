@@ -21,10 +21,12 @@
             bottom: 30px;
             width: 650px;
             height: 80px;
+            margin-left: -325px;
             background: #3a8ee6;
             text-align: center;
             line-height: 80px;
             font-size: 28px;
+            color: #fff;
         }
     }
 </style>

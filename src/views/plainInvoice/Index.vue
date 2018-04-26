@@ -54,7 +54,7 @@
                         clearable
                         type="Number"
                         placeholder="请输入大于1500元金额"
-                        :value="item"
+                        :value="item == 0 ? '' : item"
                         @change="e => priceList[index] = Number(e)"
                         @blur="e => handleBlur(e)"
                     />
@@ -64,7 +64,7 @@
                 </el-col>
             </el-row>
             <div class="title">发票收件信息</div>
-            <el-row v-for="(item, index) in invoiceDetail" :key="item.label">
+            <el-row v-for="item in invoiceDetail" :key="item.label">
                 <el-col :span="10">{{ item.label }}</el-col>
                 <el-col :span="14">
                     <el-input
@@ -89,7 +89,7 @@
                 isGw: this.$route.query.isGw,
                 context: '',
                 checked: false, // 是否选中企业
-                taxpayerNum: '',
+                taxpayerNum: '', // 纳税人识别号
                 priceTotal: this.$route.query.num, // 可开金额
                 invoiceTitle: '', // 发票抬头
                 applyPrice: 0, // 开票总金额
@@ -142,7 +142,7 @@
 
                 let applyPrice = 0;
                 const { isGw, context, invoiceTitle, checked, taxpayerNum, priceList, invoiceDetail } = this;
-
+                
                 if (invoiceTitle == '') {
                     this.waring('请填写发票抬头');
                     return;
@@ -185,13 +185,11 @@
                     }
                 };
 
-                checked && params.data.
-
-                console.log(params)
+                checked && (params.data.taxpayerNum = taxpayerNum);
 
                 this.$axios(URL.add_invoice, params).then(res => {
                     if (res && res.code == 0) {
-                        console.log(res);
+                        this.$router.push('/success');
                     }
                 })
             }

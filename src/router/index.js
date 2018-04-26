@@ -5,6 +5,7 @@ import Index from '@/views/Index';
 import SelectContract from '@/views/selectContract/Index';
 import PlainInvoice from '@/views/plainInvoice/Index';
 import Success from '@/views/success/Index';
+import InvoiceList from '@/views/invoiceList/Index';
 
 Vue.use(Router);
 
@@ -25,6 +26,10 @@ var routes = [
 		path: '/success',
 		name: 'Success',
 		component: Success
+	}, {
+		path: '/invoicelist',
+		name: 'InvoiceList',
+		component: InvoiceList
 	}
 ];
 
