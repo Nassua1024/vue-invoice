@@ -49,11 +49,16 @@
 		button {
 			width: 100%;
 			height: 100%;
-			background: #4e5d8c;
+			background: #3a8ee6;
 			font-size: 28px;
 			color: #fff;
 			letter-spacing: 2px;
 		}
+	}
+	.el-button:focus {
+		background: #3a8ee6;
+		border-color: #3a8ee6;
+		color: #fff;
 	}
 	.pick-mark {
 		position: fixed;

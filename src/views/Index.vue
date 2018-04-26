@@ -1,11 +1,21 @@
 <template>
     <div class="btn-wrap">
-        <router-link to="/selectcontract"></router-link>
+        <a @click="redirctTo('NORMAL')"></a>
         <router-link to="/"></router-link>
         <router-link to="/"></router-link>
         <router-link to="/"></router-link>
     </div>
 </template>
+
+<script>
+    export default {
+        methods: {
+            redirctTo(type) {
+                this.$router.push({ path: '/selectcontract', query: { type } });
+            }
+        }
+    }
+</script>
 
 <style lang="less" scope>
     .btn-wrap {
@@ -51,9 +61,3 @@
         }
     }
 </style>
-
-<script>
-    export default {
-        name: 'Index',
-    };
-</script>

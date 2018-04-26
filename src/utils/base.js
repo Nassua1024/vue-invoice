@@ -1,7 +1,16 @@
 
-export function encode(input) {
+const encode = (input) => {
     var base64 = new Base64()
     return base64.encode(input)
+};
+
+const formJsonData = (data) => {
+	let str = '';
+	for (let i in data) 
+		if (data.hasOwnProperty(i))
+			str = str + i + "=" + data[i] + '&';
+	
+	return (str ? str.substring(0, str.length - 1) : '');
 };
 
 function Base64() {
@@ -123,3 +132,5 @@ Date.prototype.Format = function(fmt) {
     
     return fmt;
 }
+
+export { encode, formJsonData };
