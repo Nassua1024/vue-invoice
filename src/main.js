@@ -5,8 +5,7 @@ import App from './App';
 import router from './router';
 import 'lib-flexible/flexible';
 import { get, ajax } from '@/utils/http';
-
-import { Switch, Button, Message, Row, Col, Input, Loading } from 'element-ui';
+import { Switch, Button, Message, Dialog, Row, Col, Input, Loading } from 'element-ui';
 
 Vue.use(Switch);
 Vue.use(Button);
@@ -14,6 +13,7 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Input);
 Vue.use(Loading);
+Vue.use(Dialog);
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = ajax;

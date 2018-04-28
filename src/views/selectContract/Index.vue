@@ -8,7 +8,7 @@
             v-for='item in contractList' 
             :key='item.contractId'
             :class='{ active: item.isSelect }'
-            @click='handleSelect(item.contractId, item.lessPrice, item.isGw)'
+            @click='handleSelect(item.contractId, item.lessPrice, item.isGw, item.storeId)'
         > 
             <li>[合同1]的总课时：{{ item.lessonCnt }}课时</li>
             <li><label>报名上课的分馆</label><span>{{ item.storeName }}</span></li>
@@ -30,7 +30,8 @@
                 loading: true,
                 contractList: [], // 合同列表
                 isGw: false, // 是否属于国文
-                selectId: null, // 是否选中合同
+                selectId: null, // 合同Id
+                storeId: null, // 分馆Id
                 pricePrice: 0, // 价格
                 type: this.$route.query.type
             };
@@ -43,21 +44,24 @@
             this.$axios(URL.contract_list, params).then(res => {
                 if(res && res.code == 0) {
                     this.contractList = res.data.list.map(item => {
-                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, company } = item;
-                        let isGw = company == '国文' ? true : false;
-                        const isSelect = false;
                         this.loading = false;
-                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, isSelect, isGw };
+                        const isSelect = false;
+                        const { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, company, storeId } = item;
+                        let isGw = company == '国文' ? true : false;
+                        return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, isSelect, isGw, storeId };
                     })
                 }
             });
         },
         methods: {
-            handleSelect(id, price, isGw) {
+
+            // 选择合同
+            handleSelect(id, price, isGw, storeId) {
                 this.contractList.forEach(item => {
                     item.isSelect = id == item.contractId ? true : false;
                     this.isGw = isGw;
                     this.selectId = id;
+                    this.storeId = storeId;
                     this.pricePrice = price;
                     return;
                 })
@@ -66,7 +70,7 @@
             // 确定
             redirctTo() {
                 
-                const { selectId, pricePrice, isGw, type } = this;
+                const { selectId, storeId, pricePrice, isGw, type } = this;
 
                 if(selectId == null) {
                     this.$message({
@@ -77,16 +81,23 @@
                     return;
                 }
                 
-                const route = {
-                    path: '/plainInvoice',
+               const route = {
                     query: { 
                         isGw,
-                        type,
-                        id: selectId, 
                         num: pricePrice, 
+                        id: selectId, 
                     }
                 };
 
+                if (type == 'NORMAL') {
+                    route.path = '/plaininvoice';
+                    route.query.type = type;
+                } else {
+                    route.path = '/checkinfo';
+                    route.query.storeId = storeId;
+                    
+                }
+                
                 this.$router.push(route);
             }
         }
