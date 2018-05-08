@@ -1,4 +1,3 @@
-
 <template>
     <div class="check-info">
         <h3>发票申请准备流程</h3>
@@ -12,7 +11,14 @@
                 />
             </el-col>
             <el-col :span="4">
-                <el-button type="primary" @click="handleSend">发送</el-button>
+                <el-button 
+                    type="primary" 
+                    @click="handleSend"
+                    v-loading.fullscreen.lock="loading"
+                    element-loading-text="邮件发送中~"
+                >
+                    发送
+                </el-button>
             </el-col>
         </el-row>
         <div class="step-wrap">
@@ -62,6 +68,7 @@
     export default {
         data() {
             return {
+                loading: false,
                 email: '',
                 REG: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
                 stepList: [ 
@@ -148,14 +155,13 @@
 					    mailTo: email
 				    }
 			    };
+                
+                this.loading = true;
 
                 this.$axios(URL.send_email, params).then(res => {
                     if (res && res.code == 0) {
-                        this.$message({
-                            message: '邮件已发送，注意查收',
-                            type: 'success',
-                            duration: 1500
-                        });
+                        this.loading = false;
+                        this.warning('邮件已发送，请查收~');
                         this.stepList[0].active = true;
                     }
                 })
@@ -170,10 +176,15 @@
 
             // 下一步
             redirctTo() {
+
                 if (this.stepList[0].active == false) {
                     this.warning('请先获取合同模板');
                     return;
                 }
+
+                const { isGw, num, id } = this.$route.query;
+
+                this.$router.push({ path: '/specialinvoice', query:{ isGw, num, id, } });
             }
         }
     }

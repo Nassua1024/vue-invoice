@@ -5,7 +5,7 @@ import { encode, formJsonData } from './base';
 axios.defaults.baseURL = 'http://invoice.test.shbaoyuantech.com/';
 
 if(window.location.hostname.includes('localhost'))
-	axios.defaults.headers['Authorization'] = 'Bearer ' + encode('f2a53f8d-3b74-4c70-85d4-b1f013f3c072');
+	axios.defaults.headers['Authorization'] = 'Bearer ' + encode('8e8b16de-2cf4-463e-920a-b4bcadb013ab');
 
 const ajax = (url, params = {}) => {
 

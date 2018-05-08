@@ -11,10 +11,22 @@
             @click='handleSelect(item.contractId, item.lessPrice, item.isGw, item.storeId)'
         > 
             <li>[合同1]的总课时：{{ item.lessonCnt }}课时</li>
-            <li><label>报名上课的分馆</label><span>{{ item.storeName }}</span></li>
-            <li><label>合同的报名时间</label><span>{{ new Date(item.contractDate).Format('yyyy-MM-dd') }}</span></li>
-            <li><label>总学费</label><span>{{ item.totalTuition }}</span></li>
-            <li><label>实际学费</label><span>{{ item.actualAmt }}</span></li>
+            <li>
+                <label>报名上课的分馆</label>
+                <span>{{ item.storeName }}</span>
+            </li>
+            <li>
+                <label>合同的报名时间</label>
+                <span>{{ new Date(item.contractDate).Format('yyyy-MM-dd') }}</span>
+            </li>
+            <li>
+                <label>总学费</label>
+                <span>{{ item.totalTuition }}</span>
+            </li>
+            <li>
+                <label>实际学费</label>
+                <span>{{ item.actualAmt }}</span>
+            </li>
         </ul>
         <div class='commit'><el-button @click='redirctTo'>下一步</el-button></div>
     </div>
@@ -81,21 +93,19 @@
                     return;
                 }
                 
-               const route = {
+                const route = {
                     query: { 
                         isGw,
                         num: pricePrice, 
-                        id: selectId, 
+                        id: selectId 
                     }
                 };
 
                 if (type == 'NORMAL') {
                     route.path = '/plaininvoice';
-                    route.query.type = type;
                 } else {
                     route.path = '/checkinfo';
                     route.query.storeId = storeId;
-                    
                 }
                 
                 this.$router.push(route);
