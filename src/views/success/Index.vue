@@ -1,7 +1,7 @@
 
 <template>
     <div class="success">
-        <img src="../../assets/success.png" alt="" />
+        <img src="../../assets/images/success.png" alt="" />
         <router-link to="/">查看已申请发票</router-link>
     </div>
 </template>

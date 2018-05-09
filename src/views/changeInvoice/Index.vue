@@ -2,10 +2,10 @@
 <template>
     <div class="change-invoice">
         <router-link to="/">
-            <img src="../../assets/tonormal.png" alt="" />
+            <img src="../../assets/images/tonormal.png" alt="" />
         </router-link>
         <router-link to="/checkinfo">
-            <img src="../../assets/tospecial.png" alt="" />
+            <img src="../../assets/images/tospecial.png" alt="" />
         </router-link>
     </div>
 </template>

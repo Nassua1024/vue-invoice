@@ -3,7 +3,9 @@
         <p>经系统检测最近180天新签合同如，请确认并选择需要开发票的合同</p>
         <invoice-content ref="contents" />
         <invoice-receipt ref="receipts" />
-        <div class='commit' @click="commit"><el-button>确认提交</el-button></div>
+        <div class='commit' >
+            <el-button type="primary" @click="commit">确认提交</el-button>
+        </div>
     </div>
 </template>
 
@@ -68,7 +70,7 @@
             box-sizing: border-box;
             padding: 10px 40px;
             margin-bottom: 30px;
-            background: url(../../assets/head-bg.jpg) no-repeat center center;
+            background: url(../../assets/images/head-bg.jpg) no-repeat center center;
             background-size: 100% 100%;
             font-size: 26px;
             color: #fff;

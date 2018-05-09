@@ -232,7 +232,7 @@
                 height: 100%;
                 text-align: center;
                 line-height: 166px;
-                background: url(../../assets/initbg.png) no-repeat left center;
+                background: url(../../assets/images/initbg.png) no-repeat left center;
                 background-size: 100%;
                 font-size: 26px;
             }
@@ -255,7 +255,7 @@
                 width: 36px;
                 height: 36px;
                 margin-top: -16px;
-                background: url(../../assets/check.png) no-repeat center center;
+                background: url(../../assets/images/check.png) no-repeat center center;
                 background-size: 100% 100%;
             }
             label.active {
@@ -274,7 +274,7 @@
             }
         }
         .step.active .el-col {
-            background: url(../../assets/bg.png) no-repeat center center;
+            background: url(../../assets/images/bg.png) no-repeat center center;
             background-size: 100% 100%;
         }
         .step:nth-child(3) .el-col {
@@ -307,7 +307,7 @@
                 top: -40px;
                 width: 144px;
                 height: 80px;
-                background: url(../../assets/city.png) no-repeat center center;
+                background: url(../../assets/images/city.png) no-repeat center center;
                 background-size: 100%;
                 text-align: center;
                 line-height: 80px;

@@ -1,4 +1,3 @@
-
 <template>
     <div class="contract-list" 
         v-loading.fullscreen.lock="loading"
@@ -28,7 +27,9 @@
                 <span>{{ item.actualAmt }}</span>
             </li>
         </ul>
-        <div class='commit'><el-button @click='redirctTo'>下一步</el-button></div>
+        <div class='commit'>
+            <el-button type="primary" @click='redirctTo'>下一步</el-button>
+        </div>
     </div>
 </template>
 
@@ -135,13 +136,13 @@
                 display: block;
                 width: 63px;
                 height: 63px;
-                background: url(../../assets/icon_weixuanzhong.png) no-repeat center center;
+                background: url(../../assets/images/icon_weixuanzhong.png) no-repeat center center;
                 background-size: cover;
                 z-index: 9;
                 content: '';
             }
             &.active:after {
-                background: url(../../assets/icon_xuanzhong.png) no-repeat center center;
+                background: url(../../assets/images/icon_xuanzhong.png) no-repeat center center;
                 background-size: cover;
             }
         }
