@@ -1,9 +1,8 @@
+import Vue from 'vue'
+import 'es6-promise/auto'
+import Vuex from 'vuex'
 
-import Vue from 'vue';
-import 'es6-promise/auto';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
@@ -11,12 +10,11 @@ const store = new Vuex.Store({
     },
     mutations: {
         increment(state) {
-            state.count ++
+            state.count++
         }
     }
-});
+})
 
-store.commit('increment');
-console.log(store.state.count);
+store.commit('increment')
 
-export { store };
+export { store }

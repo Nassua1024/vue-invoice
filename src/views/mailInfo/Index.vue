@@ -36,7 +36,7 @@
 
 <script>
 
-    import { URL } from '@/api/index';
+    import { URL } from '@/api/index'
 
     export default {
         data() {
@@ -80,24 +80,23 @@
                     message: txt,
                     type: 'warning',
                     duration: 1500
-                });
+                })
             },
 
             // 确认提交
             commit() {
                 
-                const { expressName, expressCode } = this;
+                const { expressName, expressCode } = this
 
                 if (expressName == '') {
-                    this.waring('请选择快递公司');
-                    return;
+                    this.waring('请选择快递公司')
+                    return
                 }
 
                 if (expressCode == '') {
-                    this.waring('请填写快递单号');
-                    return;
+                    this.waring('请填写快递单号')
+                    return
                 }
-
             }
         }
     }

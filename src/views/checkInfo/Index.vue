@@ -104,15 +104,15 @@
         },
         created() {
             
-            const params = { data: { storeId: this.$route.query.storeId } };
+            const params = { data: { storeId: this.$route.query.storeId } }
             
             this.$axios(URL.check_address, params).then(res => {
                 if (res && res.code == 0) {
-                    const data = res.data.detail;
-                    this.city = data.receiverProvinceName;
-                    this.addressList[0].text = data.receiverAddress;
-                    this.addressList[1].text = data.receiverName;
-                    this.addressList[2].text = data.receiverPhone;
+                    const data = res.data.detail
+                    this.city = data.receiverProvinceName
+                    this.addressList[0].text = data.receiverAddress
+                    this.addressList[1].text = data.receiverName
+                    this.addressList[2].text = data.receiverPhone
                 }
             })
         },
@@ -124,27 +124,27 @@
                     message: txt,
                     type: 'warning',
                     duration: 1500
-                });
+                })
             },
 
             // 输入email
             handleInput() {
-                (this.email && !this.email.match(this.REG)) && this.warning('邮箱格式有误');
+                (this.email && !this.email.match(this.REG)) && this.warning('邮箱格式有误')
             },
 
             // 发送email
             handleSend() {
 
-                const { email, REG } = this;
+                const { email, REG } = this
 
                 if (email == '') {
-                    this.warning('请输入邮箱地址');
-                    return;
+                    this.warning('请输入邮箱地址')
+                    return
                 }
 
                 if (!email.match(REG)) {
-                    this.warning('邮箱格式有误');
-                    return;
+                    this.warning('邮箱格式有误')
+                    return
                 }
 
                 const params = {
@@ -154,37 +154,37 @@
 					    isGw: this.$route.query.isGw,
 					    mailTo: email
 				    }
-			    };
+			    }
                 
-                this.loading = true;
+                this.loading = true
 
                 this.$axios(URL.send_email, params).then(res => {
                     if (res && res.code == 0) {
-                        this.loading = false;
-                        this.warning('邮件已发送，请查收~');
-                        this.stepList[0].active = true;
+                        this.loading = false
+                        this.warning('邮件已发送，请查收~')
+                        this.stepList[0].active = true
                     }
                 })
             },
 
             // 确认邮寄地址
             handleAdress() {
-                this.dialogVisible = false;
-                this.stepList[1].active = true;
-                this.stepList[2].active = true;
+                this.dialogVisible = false
+                this.stepList[1].active = true
+                this.stepList[2].active = true
             },
 
             // 下一步
             redirctTo() {
 
                 if (this.stepList[0].active == false) {
-                    this.warning('请先获取合同模板');
-                    return;
+                    this.warning('请先获取合同模板')
+                    return
                 }
 
-                const { isGw, num, id } = this.$route.query;
+                const { isGw, num, id } = this.$route.query
 
-                this.$router.push({ path: '/specialinvoice', query:{ isGw, num, id, } });
+                this.$router.push({ path: '/specialinvoice', query:{ isGw, num, id, } })
             }
         }
     }

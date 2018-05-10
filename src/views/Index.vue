@@ -11,11 +11,11 @@
     export default {
         methods: {
             redirctTo(type) {
-                this.$router.push({ path: '/selectcontract', query: { type } });
+                this.$router.push({ path: '/selectcontract', query: { type } })
             }
         },
         created() {
-            console.log(++this.$store.state.count);
+            console.log(++this.$store.state.count)
         }
     }
 </script>

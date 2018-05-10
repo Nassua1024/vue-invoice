@@ -53,7 +53,7 @@
 
 <script>
 
-    import { URL } from '@/api/index';
+    import { URL } from '@/api/index'
 
     export default {
         data() {
@@ -64,34 +64,33 @@
         created() {
             this.$axios(URL.invoice_list).then(res => {
                 if (res && res.code == 0) {
-                    console.log(res);
                     this.invoiceList = res.data.list.map(item => {
                         
-                        let btnType = [];
-                        const { id, createDate, status, type, content, title, applyprice, prices, note } = item;
+                        let btnType = []
+                        const { id, createDate, status, type, content, title, applyprice, prices, note } = item
                         
                         if (item.invoiceStatus == 'NO_PAY') {
-                            btnType = [{ txt: '放弃申请', type: 'warning' }, { txt: '去支付', type: 'success'}];
+                            btnType = [{ txt: '放弃申请', type: 'warning' }, { txt: '去支付', type: 'success'}]
                         }
                         
                         if (item.invoiceStatus == 'WAIT' && !(item.fromInvoiceId == 0 && item.type == 'NORMAL')) {
-                            btnType = [{ txt: '查看快递信息', type: 'info' }];
+                            btnType = [{ txt: '查看快递信息', type: 'info' }]
                         }
                         
                         if (item.invoiceStatus == 'OPENED_REPLACE' || item.invoiceStatus == 'FAIL') {
-                           btnType = [{ txt: '查看快递信息', type: 'info' }];
+                           btnType = [{ txt: '查看快递信息', type: 'info' }]
                         }
 
                         if (item.invoiceStatus == 'OPENED') {
-                            const time = (new Date().getTime() - new Date(_receipts[i].createDate).getTime()) / (24*60*60*1000);
+                            const time = (new Date().getTime() - new Date(_receipts[i].createDate).getTime()) / (24*60*60*1000)
                             if (item.fromInvoiceId != 0 || _time > 30 || (item.invoiceType == 'NORMAL' && !item.reopenSpecial)) {
-                                btnType = [{ txt: '查看快递信息', type: 'info' }];
+                                btnType = [{ txt: '查看快递信息', type: 'info' }]
                             } else {
-                                btnType = [{ txt: '查看快递信息', type: 'info' }, { txt: '查看快递信息', type: 'primary' }];
+                                btnType = [{ txt: '查看快递信息', type: 'info' }, { txt: '查看快递信息', type: 'primary' }]
                             }
                         }
 
-                        return { id, createDate, status, type, content, title, applyprice, prices, note, btnType };
+                        return { id, createDate, status, type, content, title, applyprice, prices, note, btnType }
                     })
                 }
             })

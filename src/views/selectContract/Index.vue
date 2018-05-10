@@ -47,7 +47,7 @@
                 storeId: null, // 分馆Id
                 pricePrice: 0, // 价格
                 type: this.$route.query.type
-            };
+            }
         },
         created() {
 
@@ -64,34 +64,34 @@
                         return { lessonCnt, storeName, contractDate, totalTuition, actualAmt, contractId, lessPrice, isSelect, isGw, storeId };
                     })
                 }
-            });
+            })
         },
         methods: {
 
             // 选择合同
             handleSelect(id, price, isGw, storeId) {
                 this.contractList.forEach(item => {
-                    item.isSelect = id == item.contractId ? true : false;
-                    this.isGw = isGw;
-                    this.selectId = id;
-                    this.storeId = storeId;
-                    this.pricePrice = price;
-                    return;
+                    item.isSelect = id == item.contractId ? true : false
+                    this.isGw = isGw
+                    this.selectId = id
+                    this.storeId = storeId
+                    this.pricePrice = price
+                    return
                 })
             },
 
             // 确定
             redirctTo() {
                 
-                const { selectId, storeId, pricePrice, isGw, type } = this;
+                const { selectId, storeId, pricePrice, isGw, type } = this
 
                 if(selectId == null) {
                     this.$message({
                         message: '请选择合同',
                         type: 'warning',
                         duration: 1500
-                    });
-                    return;
+                    })
+                    return
                 }
                 
                 const route = {
@@ -100,19 +100,19 @@
                         num: pricePrice, 
                         id: selectId 
                     }
-                };
+                }
 
                 if (type == 'NORMAL') {
-                    route.path = '/plaininvoice';
+                    route.path = '/plaininvoice'
                 } else {
-                    route.path = '/checkinfo';
-                    route.query.storeId = storeId;
+                    route.path = '/checkinfo'
+                    route.query.storeId = storeId
                 }
                 
-                this.$router.push(route);
+                this.$router.push(route)
             }
         }
-    };
+    }
 </script>
 
 <style lang="less" scoped>

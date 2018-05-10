@@ -59,23 +59,23 @@
                     message: txt,
                     type: 'warning',
                     duration: 1500
-                });
+                })
 			},
 
 			// 下一步
 			commit() {
 				
-				const contents = this.$refs.contents;
-				const receipts = this.$refs.receipts;
+				const contents = this.$refs.contents
+				const receipts = this.$refs.receipts
 
 				if (contents.verify()) {
 					
-					const { accountDetail } = this;
+					const { accountDetail } = this
 					
-					for (let i=0; i<accountDetail.length; i++) {
+					for (let i = 0; i < accountDetail.length; i++) {
 						if (accountDetail[i].value == '') {
-							this.waring(`请填写${accountDetail[i].label}`);
-							return;
+							this.waring(`请填写${accountDetail[i].label}`)
+							return
 						}
 					}
 

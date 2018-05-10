@@ -43,18 +43,18 @@
                     message: txt,
                     type: 'warning',
                     duration: 1500
-                });
+                })
             },
 
             // 校验
             verify() {
                 
-                const { invoiceDetail } = this;
+                const { invoiceDetail } = this
                 
-                for (let i=0; i<invoiceDetail.length; i++) {
+                for (let i = 0; i < invoiceDetail.length; i++) {
                     if (invoiceDetail[i].value == '') {
-                        this.waring(`请填写${invoiceDetail[i].label}`);
-                        return;
+                        this.waring(`请填写${invoiceDetail[i].label}`)
+                        return
                     }
                 }
 

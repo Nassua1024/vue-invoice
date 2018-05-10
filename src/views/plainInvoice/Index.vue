@@ -11,9 +11,9 @@
 
 <script>
     
-    import InvoiceContent from '@/components/InvoiceContent';
-    import InvoiceReceipt from '@/components/InvoiceReceipt';
-    import { URL } from '@/api/index';
+    import InvoiceContent from '@/components/InvoiceContent'
+    import InvoiceReceipt from '@/components/InvoiceReceipt'
+    import { URL } from '@/api/index'
     
     export default {
         methods: {
@@ -21,13 +21,13 @@
             // 确认提交
             commit() {
 
-                const contents = this.$refs.contents;
-                const receipts = this.$refs.receipts;
+                const contents = this.$refs.contents
+                const receipts = this.$refs.receipts
 
                 if (contents.verify() && receipts.verify()) {
                     
-                    const { isGw, context, checked, taxpayerNum, applyPrice, applyPriceList, title } = contents;
-                    const { invoiceDetail } = receipts;
+                    const { isGw, context, checked, taxpayerNum, applyPrice, applyPriceList, title } = contents
+                    const { invoiceDetail } = receipts
                     const params = {
                         method: 'POST',
                         data: {
@@ -41,14 +41,14 @@
                             recipientName: invoiceDetail[0].value,
                             recipientPhone: invoiceDetail[1].value,
                             recipientArea: invoiceDetail[2].value,
-                            recipientAddress: invoiceDetail[3].value,
+                            recipientAddress: invoiceDetail[3].value
                         }
-                    };
+                    }
                     
-                    checked && (params.data.taxpayerNum = taxpayerNum);
+                    checked && (params.data.taxpayerNum = taxpayerNum)
 
                     this.$axios(URL.add_invoice, params).then(res => {
-                        if (res && res.code == 0) this.$router.push('/success');
+                        if (res && res.code == 0) this.$router.push('/success')
                     })
                 }
             }

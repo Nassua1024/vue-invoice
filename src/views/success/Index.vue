@@ -1,4 +1,3 @@
-
 <template>
     <div class="success">
         <img src="../../assets/images/success.png" alt="" />

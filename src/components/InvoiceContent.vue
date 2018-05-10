@@ -79,13 +79,13 @@
                 priceTotal: this.$route.query.num, // 可开金额
                 title: '', // 发票抬头
                 applyPrice: 0, // 开票总金额
-                applyPriceList: [0], // 开票金额
+                applyPriceList: [0] // 开票金额
             }
         },
         computed: {
             handleContext() {
-                this.context = this.isGw ? '文化类培训费' : '艺术类培训费';
-                return this.context;
+                this.context = this.isGw ? '文化类培训费' : '艺术类培训费'
+                return this.context
             }
         },
         methods: {
@@ -96,52 +96,52 @@
                     message: txt,
                     type: 'warning',
                     duration: 1500
-                });
+                })
             },
 
             // 判断开票金额
             handleBlur(e) {
 
-                let applyPrice = 0;
-                this.applyPriceList.map(item => { applyPrice += item; });
-                this.applyPrice = applyPrice;
+                let applyPrice = 0
+                this.applyPriceList.map(item => { applyPrice += item })
+                this.applyPrice = applyPrice
 
                 if (e.target.value && e.target.value < 1500) {
-                    this.waring('开票金额低于1500元');
-                    return;
+                    this.waring('开票金额低于1500元')
+                    return
                 }
 
                 if (applyPrice > this.priceTotal) {
-                    this.waring('开票金额大于可开金额');
-                    return;
+                    this.waring('开票金额大于可开金额')
+                    return
                 }
             },
 
             // 校验
             verify() {
                 
-                let applyPrice = 0;
-                const { title, checked, taxpayerNum, applyPriceList } = this; 
+                let applyPrice = 0
+                const { title, checked, taxpayerNum, applyPriceList } = this 
 
                 if (title == '') {
-                    this.waring('请填写发票抬头');
-                    return;
+                    this.waring('请填写发票抬头')
+                    return
                 }
 
                 if (checked && taxpayerNum == '') {
-                    this.waring('请填写纳税人识别号');
-                    return;
+                    this.waring('请填写纳税人识别号')
+                    return
                 }
 
-                for (let i=0; i< applyPriceList.length; i++) {
+                for (let i=0; i<applyPriceList.length; i++) {
                     if (applyPriceList[i] < 1500) {
-                        this.waring(`开票金额${i+1}低于1500元`);
-                        return;
+                        this.waring(`开票金额${i+1}低于1500元`)
+                        return
                     }
-                    applyPrice += applyPriceList[i];
+                    applyPrice += applyPriceList[i]
                 }
 
-                return true;
+                return true
             }
         },
     }

@@ -1,5 +1,4 @@
-
-import Vue from 'vue';
+import Vue from 'vue'
 import { 
     Switch, 
     Button, 
@@ -11,16 +10,16 @@ import {
     Loading, 
     Select, 
     Option 
-} from 'element-ui';
+} from 'element-ui'
 
-Vue.use(Switch);
-Vue.use(Button);
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Input);
-Vue.use(Loading);
-Vue.use(Dialog);
-Vue.use(Select);
-Vue.use(Option);
+Vue.use(Switch)
+Vue.use(Button)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Input)
+Vue.use(Loading)
+Vue.use(Dialog)
+Vue.use(Select)
+Vue.use(Option)
 
-Vue.prototype.$message = Message;
+Vue.prototype.$message = Message
